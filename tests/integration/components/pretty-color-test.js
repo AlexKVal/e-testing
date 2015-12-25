@@ -19,3 +19,17 @@ test('should change colors', function(assert) {
 
   assert.equal(this.$('div').attr('style'), 'color: blue', 'updates to blue');
 });
+
+test('should be rendered with its color name', function(assert) {
+  assert.expect(2);
+
+  this.set('colorValue', 'orange');
+
+  this.render(hbs`{{pretty-color name=colorValue}}`);
+
+  assert.equal(this.$().text().trim(), 'Pretty Color: orange');
+
+  this.set('colorValue', 'green');
+
+  assert.equal(this.$().text().trim(), 'Pretty Color: green');
+});
